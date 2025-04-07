@@ -24,6 +24,8 @@ export default function Webcam() {
           className="block mx-auto h-[65vh]"
           screenshotFormat="image/jpeg"
           screenshotQuality={1}
+          height={1280}
+          width={720}
           videoConstraints={{
             facingMode: 'user',
             height: 1280,
