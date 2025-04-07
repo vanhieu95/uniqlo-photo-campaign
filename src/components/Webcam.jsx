@@ -46,7 +46,7 @@ export default function Webcam() {
                 captureTheImage(imageSrc)
               }}
             >
-              <Circle fill="white" stroke="none" width={100} height={100} />
+              <Circle fill="white" stroke="none" width={75} height={75} />
             </button>
           )}
         </ReactWebcam>
