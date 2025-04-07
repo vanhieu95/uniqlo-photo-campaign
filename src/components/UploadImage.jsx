@@ -11,8 +11,6 @@ export default function UploadImage() {
 
     if (result) {
       navigate('/content')
-    } else {
-      clearCapturedImage()
     }
   }
 

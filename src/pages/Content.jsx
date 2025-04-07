@@ -5,11 +5,10 @@ import { useNavigate } from 'react-router'
 
 export default function Content() {
   const { register, handleSubmit } = useForm()
-  const { completeSurvey, clearCapturedImage } = useSurvey()
+  const { completeSurvey } = useSurvey()
   const navigate = useNavigate()
 
   function onSubmit(data) {
-    console.log(data)
     let { content } = data
     content = encodeURIComponent(content)
     const result = completeSurvey(content)
@@ -17,7 +16,6 @@ export default function Content() {
     if (result) {
       navigate('/complete')
     } else {
-      clearCapturedImage()
       navigate('/photo')
     }
   }

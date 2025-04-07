@@ -1,4 +1,7 @@
 import { createContext, useContext, useState } from 'react'
+import { ref, getDownloadURL, uploadString } from 'firebase/storage'
+import { v4 as uuidv4 } from 'uuid'
+import { storage, setDatabase } from '../utils/firebase'
 
 const SurveyContext = createContext()
 
@@ -8,6 +11,7 @@ export function useSurvey() {
 
 export function SurveyProvider({ children }) {
   const [capturedImage, setCapturedImage] = useState(null)
+  const [imageUrl, setImageUrl] = useState('')
 
   function captureTheImage(imageSrc) {
     setCapturedImage(imageSrc)
@@ -15,18 +19,42 @@ export function SurveyProvider({ children }) {
 
   function clearCapturedImage() {
     setCapturedImage(null)
+    setImageUrl('')
   }
 
-  function uploadImage() {
+  async function uploadImage() {
     if (!capturedImage) {
       return false
     }
 
-    return true
+    try {
+      const imageRef = ref(storage, `images/${uuidv4()}`)
+      await uploadString(imageRef, capturedImage, 'data_url')
+      const url = await getDownloadURL(imageRef)
+
+      if (url != '') {
+        setImageUrl(url)
+      }
+
+      return true
+    } catch {
+      clearCapturedImage()
+      return false
+    }
   }
 
-  function completeSurvey(content) {
-    return true
+  async function completeSurvey(content) {
+    try {
+      await setDatabase('images', {
+        url: imageUrl,
+        content,
+      })
+
+      return true
+    } catch {
+      clearCapturedImage()
+      return false
+    }
   }
 
   const value = {
