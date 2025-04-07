@@ -24,12 +24,12 @@ export default function Webcam() {
           className="block mx-auto h-[65vh]"
           screenshotFormat="image/jpeg"
           screenshotQuality={1}
-          height={1280}
-          width={720}
+          height={700}
+          width={350}
           videoConstraints={{
             facingMode: 'user',
-            height: 1280,
-            width: 720,
+            height: 700,
+            width: 350,
           }}
         >
           {({ getScreenshot }) => (
