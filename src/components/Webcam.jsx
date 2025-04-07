@@ -7,6 +7,12 @@ import uniqloLogo from '../assets/uniqlo.svg'
 export default function Webcam() {
   const { capturedImage, captureTheImage } = useSurvey()
 
+  const aspectRatios = {
+    width: { min: 360 },
+    height: { min: 720 },
+    aspectRatio: 0.5,
+  }
+
   return (
     <div>
       <h1>
@@ -24,12 +30,11 @@ export default function Webcam() {
           className="block mx-auto h-[65vh]"
           screenshotFormat="image/jpeg"
           screenshotQuality={1}
-          height={700}
-          width={350}
+          height={720}
+          width={360}
           videoConstraints={{
             facingMode: 'user',
-            height: 700,
-            width: 350,
+            ...aspectRatios,
           }}
         >
           {({ getScreenshot }) => (
