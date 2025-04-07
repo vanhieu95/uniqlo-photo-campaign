@@ -27,7 +27,7 @@ export default function Webcam() {
 
       {!capturedImage && (
         <ReactWebcam
-          className="block mx-auto h-[65vh]"
+          className="block mx-auto"
           screenshotFormat="image/jpeg"
           screenshotQuality={1}
           disablePictureInPicture={true}
