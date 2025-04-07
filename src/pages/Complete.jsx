@@ -19,7 +19,7 @@ export default function Complete() {
       </h2>
 
       <p className="uppercase text-3xl text-white font-bold">
-        Cảm ơn bạn đã chia sẽ cùng <span>UNIQLO</span>!
+        Cảm ơn bạn đã chia sẻ cùng <span>UNIQLO</span>!
       </p>
     </>
   )
