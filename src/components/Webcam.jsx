@@ -8,8 +8,8 @@ export default function Webcam() {
   const { capturedImage, captureTheImage } = useSurvey()
 
   const aspectRatios = {
-    width: { min: 300 },
-    height: { min: 300 },
+    width: 300,
+    height: 300,
     aspectRatio: 1,
   }
 
@@ -26,32 +26,30 @@ export default function Webcam() {
       </h1>
 
       {!capturedImage && (
-        <div className="webcam-wrapper">
-          <ReactWebcam
-            className="block mx-auto"
-            screenshotFormat="image/jpeg"
-            screenshotQuality={1}
-            disablePictureInPicture={true}
-            height={300}
-            width={300}
-            videoConstraints={{
-              facingMode: 'user',
-              ...aspectRatios,
-            }}
-          >
-            {({ getScreenshot }) => (
-              <button
-                className="block mx-auto"
-                onClick={() => {
-                  const imageSrc = getScreenshot()
-                  captureTheImage(imageSrc)
-                }}
-              >
-                <Circle fill="white" stroke="none" width={75} height={75} />
-              </button>
-            )}
-          </ReactWebcam>
-        </div>
+        <ReactWebcam
+          className="block mx-auto"
+          screenshotFormat="image/jpeg"
+          screenshotQuality={1}
+          disablePictureInPicture={true}
+          height={300}
+          width={300}
+          videoConstraints={{
+            facingMode: 'user',
+            ...aspectRatios,
+          }}
+        >
+          {({ getScreenshot }) => (
+            <button
+              className="block mx-auto"
+              onClick={() => {
+                const imageSrc = getScreenshot()
+                captureTheImage(imageSrc)
+              }}
+            >
+              <Circle fill="white" stroke="none" width={75} height={75} />
+            </button>
+          )}
+        </ReactWebcam>
       )}
 
       {capturedImage && <UploadImage />}
