@@ -11,7 +11,7 @@ export function useSurvey() {
 
 export function SurveyProvider({ children }) {
   const [capturedImage, setCapturedImage] = useState(null)
-  const [imageUrl, setImageUrl] = useState('')
+  const [imageUrl, setImageUrl] = useState(null)
 
   function captureTheImage(imageSrc) {
     setCapturedImage(imageSrc)
@@ -19,7 +19,7 @@ export function SurveyProvider({ children }) {
 
   function clearCapturedImage() {
     setCapturedImage(null)
-    setImageUrl('')
+    setImageUrl(null)
   }
 
   async function uploadImage() {
@@ -44,6 +44,10 @@ export function SurveyProvider({ children }) {
   }
 
   async function completeSurvey(content) {
+    if (!capturedImage || !imageUrl) {
+      return false
+    }
+
     try {
       await setDatabase('images', {
         url: imageUrl,

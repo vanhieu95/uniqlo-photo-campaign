@@ -4,19 +4,26 @@ import { useSurvey } from '../context/SurveyContext'
 import { useNavigate } from 'react-router'
 
 export default function Content() {
-  const { register, handleSubmit } = useForm()
-  const { completeSurvey } = useSurvey()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
+  const { clearCapturedImage, completeSurvey } = useSurvey()
   const navigate = useNavigate()
+  const TEXT_AREA_MAX_LENGTH = 80
 
-  function onSubmit(data) {
+  async function onSubmit(data) {
     let { content } = data
     content = encodeURIComponent(content)
-    const result = completeSurvey(content)
+    const result = await completeSurvey(content)
 
     if (result) {
       navigate('/complete')
     } else {
+      clearCapturedImage()
       navigate('/photo')
+      return
     }
   }
 
@@ -39,9 +46,16 @@ export default function Content() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <textarea
-            {...register('content')}
-            className="bg-white w-full h-72"
+            {...register('content', {
+              maxLength: TEXT_AREA_MAX_LENGTH,
+            })}
+            className="bg-white w-full h-36 text-3xl"
           ></textarea>
+          {errors.content && (
+            <span className="text-red-600">
+              Nội dung không được vượt quá {TEXT_AREA_MAX_LENGTH} ký tự
+            </span>
+          )}
         </div>
 
         <button

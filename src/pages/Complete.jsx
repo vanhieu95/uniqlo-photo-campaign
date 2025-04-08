@@ -1,5 +1,6 @@
-import React from 'react'
+import { House } from 'lucide-react'
 import uniqloLogo from '../assets/uniqlo.svg'
+import { Link } from 'react-router'
 
 export default function Complete() {
   return (
@@ -21,6 +22,15 @@ export default function Complete() {
       <p className="uppercase text-3xl text-white font-bold">
         Cảm ơn bạn đã chia sẻ cùng <span>UNIQLO</span>!
       </p>
+
+      <Link to="/">
+        <House
+          className="block mx-auto mt-10"
+          height={75}
+          width={75}
+          stroke="white"
+        />
+      </Link>
     </>
   )
 }

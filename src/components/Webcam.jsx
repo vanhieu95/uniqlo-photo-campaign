@@ -40,7 +40,7 @@ export default function Webcam() {
         >
           {({ getScreenshot }) => (
             <button
-              className="block mx-auto"
+              className="block mx-auto mt-10"
               onClick={() => {
                 const imageSrc = getScreenshot()
                 captureTheImage(imageSrc)

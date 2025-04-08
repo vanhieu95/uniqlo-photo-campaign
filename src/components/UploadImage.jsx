@@ -6,18 +6,22 @@ export default function UploadImage() {
   const { capturedImage, clearCapturedImage, uploadImage } = useSurvey()
   const navigate = useNavigate()
 
-  function handleUploadImage() {
-    const result = uploadImage()
+  async function handleUploadImage() {
+    const result = await uploadImage()
 
     if (result) {
       navigate('/content')
+    } else {
+      clearCapturedImage()
+      navigate('/photo')
+      return
     }
   }
 
   return (
     <div>
       <img className="block mx-auto object-contain" src={capturedImage} />
-      <div className="flex justify-between items-center max-w-[600px] mx-auto overflow-hidden">
+      <div className="flex justify-between items-center max-w-[600px] mx-auto mt-10">
         <button
           className="uppercase text-white"
           onClick={() => {
