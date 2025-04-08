@@ -26,30 +26,32 @@ export default function Webcam() {
       </h1>
 
       {!capturedImage && (
-        <ReactWebcam
-          className="block mx-auto"
-          screenshotFormat="image/jpeg"
-          screenshotQuality={1}
-          disablePictureInPicture={true}
-          height={300}
-          width={300}
-          videoConstraints={{
-            facingMode: 'user',
-            ...aspectRatios,
-          }}
-        >
-          {({ getScreenshot }) => (
-            <button
-              className="block mx-auto"
-              onClick={() => {
-                const imageSrc = getScreenshot()
-                captureTheImage(imageSrc)
-              }}
-            >
-              <Circle fill="white" stroke="none" width={75} height={75} />
-            </button>
-          )}
-        </ReactWebcam>
+        <div className="webcam-wrapper">
+          <ReactWebcam
+            className="block mx-auto"
+            screenshotFormat="image/jpeg"
+            screenshotQuality={1}
+            disablePictureInPicture={true}
+            height={300}
+            width={300}
+            videoConstraints={{
+              facingMode: 'user',
+              ...aspectRatios,
+            }}
+          >
+            {({ getScreenshot }) => (
+              <button
+                className="block mx-auto"
+                onClick={() => {
+                  const imageSrc = getScreenshot()
+                  captureTheImage(imageSrc)
+                }}
+              >
+                <Circle fill="white" stroke="none" width={75} height={75} />
+              </button>
+            )}
+          </ReactWebcam>
+        </div>
       )}
 
       {capturedImage && <UploadImage />}
