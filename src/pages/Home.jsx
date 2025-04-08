@@ -1,8 +1,16 @@
+import { useEffect } from 'react'
 import uniqloLogo from '../assets/uniqlo.svg'
 import { Camera as CameraIcon } from 'lucide-react'
 import { Link } from 'react-router'
+import { useSurvey } from '../context/SurveyContext'
 
 export default function Home() {
+  const { clearCapturedImage } = useSurvey()
+
+  useEffect(() => {
+    clearCapturedImage()
+  }, [])
+
   return (
     <div className="flex flex-col justify-evenly h-full">
       <div>
