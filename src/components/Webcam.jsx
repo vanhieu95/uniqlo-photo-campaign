@@ -32,7 +32,7 @@ export default function Webcam() {
           disablePictureInPicture={true}
           width={300}
           videoConstraints={{
-            facingMode: 'user',
+            facingMode: 'environment',
             ...aspectRatios,
           }}
         >
