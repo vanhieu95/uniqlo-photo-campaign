@@ -4,24 +4,20 @@ import Home from './pages/Home'
 import Photo from './pages/Photo'
 import Content from './pages/Content'
 import Complete from './pages/Complete'
-import CameraCapture from './components/CameraCapture'
+// import CameraCapture from './components/CameraCapture'
 
 function App() {
   return (
-    <div className="p-4">
-      <h1 className="text-xl font-bold mb-4">Front Camera Capture</h1>
-      <CameraCapture />
+    <div className="text-center bg-[#fef0ed] h-svh">
+      <SurveyProvider>
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path="photo" element={<Photo />} />
+          <Route path="content" element={<Content />} />
+          <Route path="complete" element={<Complete />} />
+        </Routes>
+      </SurveyProvider>
     </div>
-    // <div className="text-center bg-[#fef0ed] h-svh">
-    //   <SurveyProvider>
-    //     <Routes>
-    //       <Route index element={<Home />} />
-    //       <Route path="photo" element={<Photo />} />
-    //       <Route path="content" element={<Content />} />
-    //       <Route path="complete" element={<Complete />} />
-    //     </Routes>
-    //   </SurveyProvider>
-    // </div>
   )
 }
 
