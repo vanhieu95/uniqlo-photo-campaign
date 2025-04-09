@@ -4,7 +4,6 @@ import Home from './pages/Home'
 import Photo from './pages/Photo'
 import Content from './pages/Content'
 import Complete from './pages/Complete'
-// import CameraCapture from './components/CameraCapture'
 
 function App() {
   return (

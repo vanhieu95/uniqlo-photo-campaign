@@ -1,56 +1,33 @@
-import { Circle } from 'lucide-react'
-import { useSurvey } from '../context/SurveyContext'
-import ReactWebcam from 'react-webcam'
-import UploadImage from './UploadImage'
 import uniqloLogo from '../assets/uniqlo.svg'
+import CameraCapture from './CameraCapture'
 
 export default function Webcam() {
-  const { capturedImage, captureTheImage } = useSurvey()
-
-  const aspectRatios = {
-    width: { max: 300 },
-    aspectRatio: 1,
-  }
-
   return (
     <div>
       <h1>
         <img
           src={uniqloLogo}
-          className="block mx-auto py-5"
-          alt="Uniqlo logo"
-          width={200}
-          height={200}
+          className="block mx-auto pt-3"
+          alt="Uniqlo"
+          width={75}
+          height={75}
         />
       </h1>
 
-      {!capturedImage && (
-        <ReactWebcam
-          className="block mx-auto"
-          mirrored="true"
-          screenshotFormat="image/jpeg"
-          screenshotQuality={1}
-          disablePictureInPicture={true}
-          videoConstraints={{
-            facingMode: 'user',
-            ...aspectRatios,
-          }}
-        >
-          {({ getScreenshot }) => (
-            <button
-              className="block mx-auto mt-10"
-              onClick={() => {
-                const imageSrc = getScreenshot()
-                captureTheImage(imageSrc)
-              }}
-            >
-              <Circle fill="white" stroke="none" width={75} height={75} />
-            </button>
-          )}
-        </ReactWebcam>
-      )}
+      <h2
+        className="text-3xl mt-4 leading-none"
+        style={{ fontFamily: 'Uniqlo Light' }}
+      >
+        BRATOP
+      </h2>
+      <h2
+        className="text-sm leading-none mb-2"
+        style={{ fontFamily: 'Uniqlo Regular' }}
+      >
+        Tích Hợp Nâng Đỡ
+      </h2>
 
-      {capturedImage && <UploadImage />}
+      <CameraCapture />
     </div>
   )
 }

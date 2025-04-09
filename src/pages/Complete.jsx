@@ -1,36 +1,38 @@
 import { House } from 'lucide-react'
 import uniqloLogo from '../assets/uniqlo.svg'
-import { Link } from 'react-router'
 
 export default function Complete() {
   return (
     <>
-      <h1 className="pt-16">
+      <h1>
         <img
           src={uniqloLogo}
-          className="block mx-auto py-5"
-          alt="Uniqlo logo"
-          width={300}
-          height={300}
+          className="block mx-auto pt-[130px]"
+          alt="Uniqlo"
+          width={125}
+          height={125}
         />
       </h1>
 
-      <h2 className="uppercase text-4xl text-white font-black py-10">
-        Uniqlo Bra Top
-      </h2>
-
-      <p className="uppercase text-3xl text-white font-bold">
-        Cảm ơn bạn đã chia sẻ cùng <span>UNIQLO</span>!
+      <p
+        className="uppercase text-xl text-[#e85454] w-[85%] mx-auto mt-18"
+        style={{ fontFamily: 'Uniqlo Regular' }}
+      >
+        Chúc bạn có một trải nghiệm thật thú vị cùng
       </p>
 
-      <Link to="/">
-        <House
-          className="block mx-auto mt-10"
-          height={75}
-          width={75}
-          stroke="white"
-        />
-      </Link>
+      <h2
+        className="text-6xl mt-2 leading-none"
+        style={{ fontFamily: 'Uniqlo Light' }}
+      >
+        BRATOP
+      </h2>
+      <h2
+        className="text-lg leading-none mb-2"
+        style={{ fontFamily: 'Uniqlo Regular' }}
+      >
+        Tích Hợp Nâng Đỡ
+      </h2>
     </>
   )
 }

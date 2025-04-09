@@ -32,24 +32,46 @@ export default function Content() {
       <h1>
         <img
           src={uniqloLogo}
-          className="block mx-auto py-5"
-          alt="Uniqlo logo"
-          width={200}
-          height={200}
+          className="block mx-auto pt-3"
+          alt="Uniqlo"
+          width={75}
+          height={75}
         />
       </h1>
 
-      <p className="text-3xl text-white font-bold my-5">
-        Wear <span>UNIQLO BRA TOP</span> and feel ...
+      <h2
+        className="text-3xl mt-2 leading-none"
+        style={{ fontFamily: 'Uniqlo Light' }}
+      >
+        BRATOP
+      </h2>
+      <h2
+        className="text-sm leading-none mb-2"
+        style={{ fontFamily: 'Uniqlo Regular' }}
+      >
+        Tích Hợp Nâng Đỡ
+      </h2>
+
+      <p style={{ fontFamily: 'Uniqlo Light' }}>Cảm nhận của bạn thế nào về</p>
+
+      <h3
+        className="text-2xl text-[#e85454]"
+        style={{ fontFamily: 'Uniqlo Bold' }}
+      >
+        UNIQLO BRATOP
+      </h3>
+
+      <p className="text-sm" style={{ fontFamily: 'Uniqlo Light' }}>
+        Hãy cùng nhau chia sẽ nhé ❤️
       </p>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
+        <div class="framed-textarea-wrapper mx-auto mt-8">
           <textarea
             {...register('content', {
               maxLength: TEXT_AREA_MAX_LENGTH,
             })}
-            className="bg-white w-full h-36 text-3xl"
+            className="bg-white w-[90%] h-48 text-3xl mx-auto text-black resize-none framed-textarea"
           ></textarea>
           {errors.content && (
             <span className="text-red-600">
@@ -59,8 +81,9 @@ export default function Content() {
         </div>
 
         <button
-          className="bg-red-600 text-white text-3xl font-bold uppercase py-4 px-8 mt-10"
+          className="bg-[#e85454] text-white text-2xl uppercase py-2 px-4 mt-8"
           type="submit"
+          style={{ fontFamily: 'Uniqlo Bold' }}
         >
           Hoàn tất
         </button>

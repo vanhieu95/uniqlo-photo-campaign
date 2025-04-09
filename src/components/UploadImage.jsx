@@ -19,17 +19,35 @@ export default function UploadImage() {
   }
 
   return (
-    <div>
-      <img className="block mx-auto" src={capturedImage} />
-      <div className="flex justify-between items-center max-w-[600px] mx-auto mt-10">
+    <>
+      <div
+        className="relative w-full max-w-sm"
+        style={{ width: '240px', height: '360px' }}
+      >
+        <img
+          src={capturedImage}
+          alt="Captured"
+          className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-md border-2 border-[#e85454]"
+        />
+      </div>
+      <div className="flex justify-between items-center mx-auto w-[240px]">
         <button
-          className="uppercase text-white"
           onClick={() => {
             clearCapturedImage()
           }}
         >
-          <CameraIcon className="block mx-auto" height={75} width={75} />
-          Quay lại
+          <CameraIcon
+            className="block mx-auto"
+            height={50}
+            width={50}
+            stroke="#e85454"
+          />
+          <span
+            className="uppercase bg-white py-1 px-3 text-xs text-[#e85454]"
+            style={{ fontFamily: 'Uniqlo Bold' }}
+          >
+            Quay lại
+          </span>
         </button>
 
         <button
@@ -38,10 +56,21 @@ export default function UploadImage() {
             handleUploadImage()
           }}
         >
-          <MoveRight className="block mx-auto" height={75} width={75} />
-          Tiếp tục
+          <MoveRight
+            className="block mx-auto"
+            height={50}
+            width={50}
+            stroke="#e85454"
+          />
+
+          <span
+            className="uppercase text-white py-1 px-3 text-xs bg-[#e85454]"
+            style={{ fontFamily: 'Uniqlo Bold' }}
+          >
+            Tiếp tục
+          </span>
         </button>
       </div>
-    </div>
+    </>
   )
 }

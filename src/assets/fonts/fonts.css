@@ -1,0 +1,20 @@
+@font-face {
+  font-family: 'Uniqlo Light';
+  src: url('./UniqloProVNLight.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Uniqlo Regular';
+  src: url('./UniqloProVNRegular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Uniqlo Bold';
+  src: url('./UniqloProVNBold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
