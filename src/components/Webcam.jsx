@@ -9,7 +9,7 @@ export default function Webcam() {
 
   const aspectRatios = {
     width: { max: 300 },
-    aspectRatio: 0.6,
+    aspectRatio: 1,
   }
 
   return (
