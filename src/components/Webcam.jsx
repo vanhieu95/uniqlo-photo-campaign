@@ -9,8 +9,8 @@ export default function Webcam() {
 
   const aspectRatios = {
     width: 300,
-    height: 300,
-    aspectRatio: 1,
+    height: 500,
+    aspectRatio: 0.6,
   }
 
   return (
@@ -32,7 +32,7 @@ export default function Webcam() {
           screenshotQuality={1}
           disablePictureInPicture={true}
           height={300}
-          width={300}
+          width={500}
           videoConstraints={{
             facingMode: 'user',
             ...aspectRatios,
