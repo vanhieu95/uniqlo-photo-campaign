@@ -30,9 +30,8 @@ export default function Webcam() {
           screenshotFormat="image/jpeg"
           screenshotQuality={1}
           disablePictureInPicture={true}
-          width={300}
           videoConstraints={{
-            facingMode: 'environment',
+            facingMode: 'user',
             ...aspectRatios,
           }}
         >
