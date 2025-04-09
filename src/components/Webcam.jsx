@@ -8,8 +8,8 @@ export default function Webcam() {
   const { capturedImage, captureTheImage } = useSurvey()
 
   const aspectRatios = {
-    aspectRatio: 0.6,
-    width: 300,
+    aspectRatio: 0.8,
+    width: 400,
     height: 500,
   }
 
@@ -26,7 +26,7 @@ export default function Webcam() {
       </h1>
 
       {!capturedImage && (
-        <div className="camera-wrapper w-[300px] h-[500px] mx-auto">
+        <div className="camera-wrapper w-[400px] h-[500px] mx-auto">
           <ReactWebcam
             className="w-full h-full object-contain"
             screenshotFormat="image/jpeg"
