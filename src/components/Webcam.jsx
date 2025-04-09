@@ -8,8 +8,6 @@ export default function Webcam() {
   const { capturedImage, captureTheImage } = useSurvey()
 
   const aspectRatios = {
-    width: 300,
-    height: 500,
     aspectRatio: 0.6,
   }
 
@@ -31,8 +29,6 @@ export default function Webcam() {
           screenshotFormat="image/jpeg"
           screenshotQuality={1}
           disablePictureInPicture={true}
-          height={300}
-          width={500}
           videoConstraints={{
             facingMode: 'user',
             ...aspectRatios,
