@@ -9,6 +9,8 @@ export default function Webcam() {
 
   const aspectRatios = {
     aspectRatio: 0.6,
+    width: 300,
+    height: 500,
   }
 
   return (
@@ -24,28 +26,30 @@ export default function Webcam() {
       </h1>
 
       {!capturedImage && (
-        <ReactWebcam
-          className="block mx-auto"
-          screenshotFormat="image/jpeg"
-          screenshotQuality={1}
-          disablePictureInPicture={true}
-          videoConstraints={{
-            facingMode: 'user',
-            ...aspectRatios,
-          }}
-        >
-          {({ getScreenshot }) => (
-            <button
-              className="block mx-auto mt-10"
-              onClick={() => {
-                const imageSrc = getScreenshot()
-                captureTheImage(imageSrc)
-              }}
-            >
-              <Circle fill="white" stroke="none" width={75} height={75} />
-            </button>
-          )}
-        </ReactWebcam>
+        <div className="w-[300px] h-[500px] overflow-hidden mx-auto">
+          <ReactWebcam
+            className="w-full h-full object-cover"
+            screenshotFormat="image/jpeg"
+            screenshotQuality={1}
+            disablePictureInPicture={true}
+            videoConstraints={{
+              facingMode: 'user',
+              ...aspectRatios,
+            }}
+          >
+            {({ getScreenshot }) => (
+              <button
+                className="block mx-auto mt-10"
+                onClick={() => {
+                  const imageSrc = getScreenshot()
+                  captureTheImage(imageSrc)
+                }}
+              >
+                <Circle fill="white" stroke="none" width={75} height={75} />
+              </button>
+            )}
+          </ReactWebcam>
+        </div>
       )}
 
       {capturedImage && <UploadImage />}
