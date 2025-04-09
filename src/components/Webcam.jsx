@@ -26,7 +26,7 @@ export default function Webcam() {
       </h1>
 
       {!capturedImage && (
-        <div className="w-[300px] h-[500px] overflow-hidden mx-auto">
+        <div className="camera-wrapper w-[300px] h-[500px] mx-auto">
           <ReactWebcam
             className="w-full h-full object-cover"
             screenshotFormat="image/jpeg"
