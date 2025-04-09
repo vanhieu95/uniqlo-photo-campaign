@@ -20,7 +20,10 @@ export default function UploadImage() {
 
   return (
     <div>
-      <img className="block mx-auto object-contain" src={capturedImage} />
+      <img
+        className="block mx-auto w-[300px] h-[500px] object-cover"
+        src={capturedImage}
+      />
       <div className="flex justify-between items-center max-w-[600px] mx-auto mt-10">
         <button
           className="uppercase text-white"
