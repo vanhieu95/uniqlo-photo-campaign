@@ -8,7 +8,7 @@ export default function Webcam() {
   const { capturedImage, captureTheImage } = useSurvey()
 
   const aspectRatios = {
-    aspectRatio: 0.8,
+    aspectRatio: 1.2,
     width: 400,
     height: 500,
   }
