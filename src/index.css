@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+body {
+  background-color:#fef0ed;
+}
+
 .camera-wrapper video {
   overflow: hidden;
 }

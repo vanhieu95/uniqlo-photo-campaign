@@ -1,13 +1,17 @@
 import { useSurvey } from '../context/SurveyContext'
 import { CameraIcon, MoveRight } from 'lucide-react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router'
 
 export default function UploadImage() {
+  const [loading, setLoading] = useState(false)
   const { capturedImage, clearCapturedImage, uploadImage } = useSurvey()
   const navigate = useNavigate()
 
   async function handleUploadImage() {
+    setLoading(true)
     const result = await uploadImage()
+    setLoading(false)
 
     if (result) {
       navigate('/content')
@@ -21,8 +25,8 @@ export default function UploadImage() {
   return (
     <>
       <div
-        className="relative w-full max-w-sm"
-        style={{ width: '240px', height: '360px' }}
+        className="relative w-full max-w-[85%]"
+        style={{ aspectRatio: '3 / 5' }}
       >
         <img
           src={capturedImage}
@@ -51,17 +55,24 @@ export default function UploadImage() {
         </button>
 
         <button
-          className="uppercase text-white"
+          disabled={loading}
+          className={`uppercase text-white ${
+            loading ? 'opacity-50 cursor-not-allowed' : ''
+          }`}
           onClick={() => {
             handleUploadImage()
           }}
         >
-          <MoveRight
-            className="block mx-auto"
-            height={50}
-            width={50}
-            stroke="#e85454"
-          />
+          {loading ? (
+            <div className="h-[50px] w-[50px] mx-auto border-4 border-white border-t-[#e85454] rounded-full animate-spin" />
+          ) : (
+            <MoveRight
+              className="block mx-auto"
+              height={50}
+              width={50}
+              stroke="#e85454"
+            />
+          )}
 
           <span
             className="uppercase text-white py-1 px-3 text-xs bg-[#e85454]"

@@ -7,7 +7,7 @@ import Complete from './pages/Complete'
 
 function App() {
   return (
-    <div className="text-center bg-[#fef0ed] h-svh">
+    <div className="text-center">
       <SurveyProvider>
         <Routes>
           <Route index element={<Home />} />

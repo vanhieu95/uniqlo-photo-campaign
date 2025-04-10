@@ -2,6 +2,7 @@ import uniqloLogo from '../assets/uniqlo.svg'
 import { useForm } from 'react-hook-form'
 import { useSurvey } from '../context/SurveyContext'
 import { useNavigate } from 'react-router'
+import { useState } from 'react'
 
 export default function Content() {
   const {
@@ -9,6 +10,7 @@ export default function Content() {
     handleSubmit,
     formState: { errors },
   } = useForm()
+  const [loading, setLoading] = useState(false)
   const { clearCapturedImage, completeSurvey } = useSurvey()
   const navigate = useNavigate()
   const TEXT_AREA_MAX_LENGTH = 80
@@ -16,7 +18,9 @@ export default function Content() {
   async function onSubmit(data) {
     let { content } = data
     content = encodeURIComponent(content)
+    setLoading(true)
     const result = await completeSurvey(content)
+    setLoading(false)
 
     if (result) {
       navigate('/complete')
@@ -66,7 +70,7 @@ export default function Content() {
       </p>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div class="framed-textarea-wrapper mx-auto mt-8">
+        <div className="framed-textarea-wrapper mx-auto mt-8">
           <textarea
             {...register('content', {
               maxLength: TEXT_AREA_MAX_LENGTH,
@@ -81,7 +85,10 @@ export default function Content() {
         </div>
 
         <button
-          className="bg-[#e85454] text-white text-2xl uppercase py-2 px-4 mt-8"
+          disabled={loading}
+          className={`bg-[#e85454] text-white text-2xl uppercase py-2 px-4 mt-8 ${
+            loading ? 'opacity-50 cursor-not-allowed' : ''
+          }`}
           type="submit"
           style={{ fontFamily: 'Uniqlo Bold' }}
         >

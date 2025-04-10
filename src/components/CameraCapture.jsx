@@ -8,6 +8,10 @@ const CameraCapture = () => {
   const { capturedImage, captureTheImage } = useSurvey()
 
   useEffect(() => {
+    if (capturedImage != null) {
+      return
+    }
+
     const getCamera = async () => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
@@ -31,11 +35,44 @@ const CameraCapture = () => {
 
     if (video && canvas) {
       const context = canvas.getContext('2d')
-      canvas.width = video.videoWidth
-      canvas.height = video.videoHeight
-      context.drawImage(video, 0, 0, canvas.width, canvas.height)
-      const imageDataURL = canvas.toDataURL('image/jpeg', 0.6)
-      captureTheImage(imageDataURL)
+      const videoWidth = video.videoWidth
+      const videoHeight = video.videoHeight
+
+      // Desired aspect ratio
+      const aspectRatio = 3 / 5
+
+      // Calculate dimensions for center crop
+      let cropWidth = videoWidth
+      let cropHeight = cropWidth / aspectRatio
+
+      if (cropHeight > videoHeight) {
+        cropHeight = videoHeight
+        cropWidth = cropHeight * aspectRatio
+      }
+
+      const cropX = (videoWidth - cropWidth) / 2
+      const cropY = (videoHeight - cropHeight) / 2
+
+      // Set canvas size to the cropped size
+      canvas.width = cropWidth
+      canvas.height = cropHeight
+
+      // Draw cropped video frame to canvas
+      context.drawImage(
+        video,
+        cropX,
+        cropY,
+        cropWidth,
+        cropHeight,
+        0,
+        0,
+        canvas.width,
+        canvas.height,
+      )
+
+      // You can then convert canvas to image or do whatever you need
+      const imageDataUrl = canvas.toDataURL('image/jpeg', 0.75)
+      captureTheImage(imageDataUrl)
     }
   }
 
@@ -45,8 +82,8 @@ const CameraCapture = () => {
       {!capturedImage && (
         <>
           <div
-            className="relative w-full max-w-sm"
-            style={{ width: '240px', height: '360px' }}
+            className="relative w-full max-w-[85%]"
+            style={{ aspectRatio: '3 / 5' }}
           >
             <video
               ref={videoRef}
