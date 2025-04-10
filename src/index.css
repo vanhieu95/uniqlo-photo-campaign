@@ -10,8 +10,8 @@ body {
 
 /* CSS */
 .record-button {
-  width: 75px;
-  height: 75px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background-color: transparent;
   border: 2px solid #e85454; /* Soft red border */
@@ -22,8 +22,8 @@ body {
 }
 
 .inner-circle {
-  width: 65px;
-  height: 65px;
+  width: 40px;
+  height: 40px;
   background-color: #e85454; /* Red button */
   border-radius: 50%;
 }

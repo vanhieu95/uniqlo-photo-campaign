@@ -39,7 +39,7 @@ const CameraCapture = () => {
       const videoHeight = video.videoHeight
 
       // Desired aspect ratio
-      const aspectRatio = 3 / 5
+      const aspectRatio = 3 / 4
 
       // Calculate dimensions for center crop
       let cropWidth = videoWidth
@@ -83,7 +83,7 @@ const CameraCapture = () => {
         <>
           <div
             className="relative w-full max-w-[85%]"
-            style={{ aspectRatio: '3 / 5' }}
+            style={{ aspectRatio: '3 / 4' }}
           >
             <video
               ref={videoRef}
@@ -97,7 +97,7 @@ const CameraCapture = () => {
             <div className="inner-circle"></div>
           </button>
           <span
-            className="uppercase bg-white py-1 px-3 text-xs text-[#e85454] border-[#e85454] border-1 mb-0"
+            className="uppercase bg-white py-1 px-3 leading-0 text-[0.5rem] text-[#e85454] border-[#e85454] border-1 mb-0"
             style={{ fontFamily: 'Uniqlo Bold' }}
           >
             Chụp ảnh

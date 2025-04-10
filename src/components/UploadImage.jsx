@@ -26,7 +26,7 @@ export default function UploadImage() {
     <>
       <div
         className="relative w-full max-w-[85%]"
-        style={{ aspectRatio: '3 / 5' }}
+        style={{ aspectRatio: '3 / 4' }}
       >
         <img
           src={capturedImage}
@@ -47,7 +47,7 @@ export default function UploadImage() {
             stroke="#e85454"
           />
           <span
-            className="uppercase bg-white py-1 px-3 text-xs text-[#e85454]"
+            className="uppercase bg-white py-1 px-3 leading-0 text-[0.5rem] text-[#e85454]"
             style={{ fontFamily: 'Uniqlo Bold' }}
           >
             Quay lại
@@ -75,7 +75,7 @@ export default function UploadImage() {
           )}
 
           <span
-            className="uppercase text-white py-1 px-3 text-xs bg-[#e85454]"
+            className="uppercase text-white py-1 px-3 leading-0 text-[0.5rem] bg-[#e85454]"
             style={{ fontFamily: 'Uniqlo Bold' }}
           >
             Tiếp tục
