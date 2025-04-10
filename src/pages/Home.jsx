@@ -18,8 +18,8 @@ export default function Home() {
     <div className="h-full flex flex-col justify-between">
       <div>
         <h1
-          className="text-xl mb-4 pt-14 text-[#e85454] uppercase"
-          style={{ fontFamily: 'Uniqlo Regular' }}
+          className="text-2xl mb-4 pt-14 text-[#e85454] uppercase"
+          style={{ fontFamily: 'Uniqlo Bold' }}
         >
           Chào mừng bạn đến với
           <img
@@ -71,7 +71,7 @@ export default function Home() {
             </button>
           </Link>
         </div>
-        <div div className="horizontal-line"></div>
+        <div className="horizontal-line"></div>
       </div>
     </div>
   )

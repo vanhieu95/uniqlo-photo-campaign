@@ -33,7 +33,7 @@ export default function Guide() {
               cảm nhận của bạn & nhấn ”Hoàn Tất”
               <span style={{ fontFamily: 'Uniqlo Light' }}>
                 {' '}
-                ( số ký tự nhập: tối đa 20 chữ )
+                ( số ký tự nhập: tối đa 40 chữ )
               </span>
             </p>
             <p style={{ fontFamily: 'Uniqlo Light' }}>
@@ -54,7 +54,7 @@ export default function Guide() {
           </button>
         </Link>
       </div>
-      <div div className="horizontal-line"></div>
+      <div className="horizontal-line"></div>
     </div>
   )
 }

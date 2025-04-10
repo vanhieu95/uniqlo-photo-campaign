@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useSurvey } from '../context/SurveyContext'
-import UploadImage from './UploadImage'
 import ScreenShotButton from '../assets/images/screen-shot-button.png'
+import ImageUploader from './ImageUploader'
 
 export default function CameraCapture() {
   const videoRef = useRef(null)
@@ -81,38 +81,38 @@ export default function CameraCapture() {
   }
 
   return (
-    <div className="flex flex-col items-center space-y-4">
-      {/* Video container with fixed aspect ratio */}
-      {!capturedImage && (
-        <>
-          <div
-            className="relative w-full max-w-[85%]"
-            style={{ aspectRatio: '3 / 4' }}
-          >
-            <video
-              ref={videoRef}
-              autoPlay
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-md border-2 border-[#e85454]"
-            />
-          </div>
+    <>
+      <div
+        className="relative w-full max-w-[85%]"
+        style={{ aspectRatio: '3 / 4' }}
+      >
+        <video
+          ref={videoRef}
+          autoPlay
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-md border-2 border-[#e85454]"
+        />
+      </div>
 
-          {isVideoLoaded && (
-            <button onClick={capturePhoto}>
-              <img
-                src={ScreenShotButton}
-                className="mx-auto"
-                alt="Chụp ảnh"
-                width={75}
-              />
-            </button>
-          )}
+      <div className="flex w-[85%] items-end-safe">
+        <button
+          className="ml-auto translate-x-[35%]"
+          disabled={!isVideoLoaded}
+          onClick={capturePhoto}
+        >
+          <img
+            src={ScreenShotButton}
+            className={`${
+              !isVideoLoaded ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
+            alt="Chụp ảnh"
+            width={100}
+          />
+        </button>
 
-          <canvas ref={canvasRef} style={{ display: 'none' }} />
-        </>
-      )}
-      {/* Captured image preview */}
-      {capturedImage && <UploadImage />}
-    </div>
+        <ImageUploader />
+      </div>
+      <canvas ref={canvasRef} style={{ display: 'none' }} />
+    </>
   )
 }

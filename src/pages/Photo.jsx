@@ -1,8 +1,12 @@
 import uniqloLogo from '../assets/uniqlo.svg'
 import CameraCapture from '../components/CameraCapture'
 import BratopLogo from '../assets/images/bratop-logo.png'
+import UploadImage from '../components/UploadImage'
+import { useSurvey } from '../context/SurveyContext'
 
 export default function Photo() {
+  const { capturedImage } = useSurvey()
+
   return (
     <>
       <div className="mb-2">
@@ -23,7 +27,17 @@ export default function Photo() {
           width={100}
         />
       </div>
-      <CameraCapture />
+      {/* <CameraCapture /> */}
+      {/* Video container with fixed aspect ratio */}
+      <div className="flex flex-col items-center space-y-4">
+        {!capturedImage && (
+          <>
+            <CameraCapture />
+          </>
+        )}
+        {/* Captured image preview */}
+        {capturedImage && <UploadImage />}
+      </div>
     </>
   )
 }

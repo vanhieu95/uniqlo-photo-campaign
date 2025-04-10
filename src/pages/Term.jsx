@@ -58,7 +58,7 @@ export default function Term() {
         </Link>
       </div>
 
-      <div div className="horizontal-line"></div>
+      <div className="horizontal-line"></div>
     </div>
   )
 }

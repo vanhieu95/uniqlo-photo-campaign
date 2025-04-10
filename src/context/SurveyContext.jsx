@@ -36,6 +36,8 @@ export function SurveyProvider({ children }) {
         setImageUrl(url)
       }
 
+      console.log(url)
+
       return true
     } catch {
       clearCapturedImage()

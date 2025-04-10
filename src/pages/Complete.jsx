@@ -18,8 +18,8 @@ export default function Complete() {
         </h1>
 
         <p
-          className="uppercase text-xl text-[#e85454] w-[85%] mx-auto mt-18"
-          style={{ fontFamily: 'Uniqlo Regular' }}
+          className="uppercase text-2xl text-[#e85454] w-[85%] mx-auto mt-18"
+          style={{ fontFamily: 'Uniqlo Bold' }}
         >
           Chúc bạn có một trải nghiệm thật thú vị cùng
         </p>
@@ -41,7 +41,7 @@ export default function Complete() {
             width={30}
           />
         </Link>
-        <div div className="horizontal-line"></div>
+        <div className="horizontal-line"></div>
       </div>
     </div>
   )

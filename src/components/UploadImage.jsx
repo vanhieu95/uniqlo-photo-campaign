@@ -38,11 +38,18 @@ export default function UploadImage() {
       </div>
       <div className="flex justify-between items-center mx-auto w-[85%]">
         <button
+          disabled={loading}
+          className={`${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
           onClick={() => {
             clearCapturedImage()
           }}
         >
-          <img src={BackButton} className="mx-auto" alt="Tiếp tục" width={75} />
+          <img
+            src={BackButton}
+            className="mx-auto"
+            alt="Tiếp tục"
+            width={100}
+          />
         </button>
 
         <button
@@ -59,7 +66,7 @@ export default function UploadImage() {
               src={NextButton}
               className="mx-auto"
               alt="Tiếp tục"
-              width={75}
+              width={100}
             />
           )}
         </button>

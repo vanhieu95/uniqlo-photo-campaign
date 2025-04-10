@@ -14,7 +14,7 @@ export default function Content() {
   const [loading, setLoading] = useState(false)
   const { clearCapturedImage, completeSurvey } = useSurvey()
   const navigate = useNavigate()
-  const TEXT_AREA_MAX_LENGTH = 80
+  const TEXT_AREA_MAX_LENGTH = 40
 
   async function onSubmit(data) {
     let { content } = data
