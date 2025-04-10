@@ -1,38 +1,48 @@
-import { House } from 'lucide-react'
 import uniqloLogo from '../assets/uniqlo.svg'
+import BratopLogo from '../assets/images/bratop-logo.png'
+import HomeButton from '../assets/images/home-button.png'
+import { Link } from 'react-router'
 
 export default function Complete() {
   return (
-    <>
-      <h1>
+    <div className="h-full flex flex-col justify-between">
+      <div>
+        <h1>
+          <img
+            src={uniqloLogo}
+            className="block mx-auto pt-[130px]"
+            alt="Uniqlo"
+            width={125}
+            height={125}
+          />
+        </h1>
+
+        <p
+          className="uppercase text-xl text-[#e85454] w-[85%] mx-auto mt-18"
+          style={{ fontFamily: 'Uniqlo Regular' }}
+        >
+          Chúc bạn có một trải nghiệm thật thú vị cùng
+        </p>
+
         <img
-          src={uniqloLogo}
-          className="block mx-auto pt-[130px]"
-          alt="Uniqlo"
-          width={125}
-          height={125}
+          src={BratopLogo}
+          className="mx-auto mt-5 mb-2"
+          alt="Bra Top tích hợp nâng đỡ"
+          width={200}
         />
-      </h1>
+      </div>
 
-      <p
-        className="uppercase text-xl text-[#e85454] w-[85%] mx-auto mt-18"
-        style={{ fontFamily: 'Uniqlo Regular' }}
-      >
-        Chúc bạn có một trải nghiệm thật thú vị cùng
-      </p>
-
-      <h2
-        className="text-6xl mt-2 leading-none"
-        style={{ fontFamily: 'Uniqlo Light' }}
-      >
-        BRATOP
-      </h2>
-      <h2
-        className="text-lg leading-none mb-2"
-        style={{ fontFamily: 'Uniqlo Regular' }}
-      >
-        Tích Hợp Nâng Đỡ
-      </h2>
-    </>
+      <div className="relative">
+        <Link to="/">
+          <img
+            src={HomeButton}
+            className="absolute left-[20px] bottom-[40px]"
+            alt="Về trang đầu"
+            width={30}
+          />
+        </Link>
+        <div div className="horizontal-line"></div>
+      </div>
+    </div>
   )
 }

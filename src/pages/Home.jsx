@@ -2,7 +2,10 @@ import { useEffect } from 'react'
 import uniqloLogo from '../assets/uniqlo.svg'
 import { Link } from 'react-router'
 import { useSurvey } from '../context/SurveyContext'
+import BratopLogo from '../assets/images/bratop-logo.png'
 import CameraButton from '../assets/images/camera-button.png'
+import GuideButton from '../assets/images/guide-button.png'
+import TermButton from '../assets/images/term-button.png'
 
 export default function Home() {
   const { clearCapturedImage } = useSurvey()
@@ -12,7 +15,7 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="h-full">
+    <div className="h-full flex flex-col justify-between">
       <div>
         <h1
           className="text-xl mb-4 pt-14 text-[#e85454] uppercase"
@@ -27,30 +30,49 @@ export default function Home() {
             height={100}
           />
         </h1>
-        <h2 className="text-7xl mt-4" style={{ fontFamily: 'Uniqlo Light' }}>
-          BRATOP
-        </h2>
-        <h2 className="text-3xl" style={{ fontFamily: 'Uniqlo Regular' }}>
-          Tích Hợp Nâng Đỡ
-        </h2>
+        <img
+          src={BratopLogo}
+          className="mx-auto mt-5 mb-2"
+          alt="Bra Top tích hợp nâng đỡ"
+          width={300}
+        />
+
+        <Link to="/photo">
+          <img
+            src={CameraButton}
+            className="mx-auto mt-10 mb-2"
+            alt="Nhấn để bắt đầu chụp ảnh"
+            width={250}
+          />
+        </Link>
       </div>
 
-      <Link to="/photo">
-        <img
-          src={CameraButton}
-          className="mx-auto mt-5 mb-2"
-          alt="Nhấn để bắt đầu chụp ảnh"
-          width={175}
-        />
-      </Link>
+      <div className="relative">
+        <div className=" absolute bottom-0 left-1/2 translate-x-[-50%] flex justify-between items-center mx-auto w-[85%]">
+          <Link to="/term">
+            <button>
+              <img
+                src={TermButton}
+                className="mx-auto"
+                alt="Điều khoản"
+                width={100}
+              />
+            </button>
+          </Link>
 
-      <Link
-        to="/photo"
-        className="text-white text-lg uppercase bg-[#e85454] w-fit mx-auto py-2 px-4"
-        style={{ fontFamily: 'Uniqlo Regular' }}
-      >
-        Nhấn để bắt đầu chụp ảnh
-      </Link>
+          <Link to="/guide">
+            <button>
+              <img
+                src={GuideButton}
+                className="mx-auto"
+                alt="Cách sử dụng"
+                width={100}
+              />
+            </button>
+          </Link>
+        </div>
+        <div div className="horizontal-line"></div>
+      </div>
     </div>
   )
 }

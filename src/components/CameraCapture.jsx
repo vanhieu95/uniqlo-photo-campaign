@@ -1,10 +1,12 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useSurvey } from '../context/SurveyContext'
 import UploadImage from './UploadImage'
+import ScreenShotButton from '../assets/images/screen-shot-button.png'
 
-const CameraCapture = () => {
+export default function CameraCapture() {
   const videoRef = useRef(null)
   const canvasRef = useRef(null)
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   const { capturedImage, captureTheImage } = useSurvey()
 
   useEffect(() => {
@@ -21,7 +23,9 @@ const CameraCapture = () => {
         if (videoRef.current) {
           videoRef.current.srcObject = stream
         }
+        setIsVideoLoaded(true)
       } catch (err) {
+        setIsVideoLoaded(false)
         console.error('Error accessing camera: ', err)
       }
     }
@@ -93,15 +97,16 @@ const CameraCapture = () => {
             />
           </div>
 
-          <button onClick={capturePhoto} className="record-button mb-1">
-            <div className="inner-circle"></div>
-          </button>
-          <span
-            className="uppercase bg-white py-1 px-3 leading-0 text-[0.5rem] text-[#e85454] border-[#e85454] border-1 mb-0"
-            style={{ fontFamily: 'Uniqlo Bold' }}
-          >
-            Chụp ảnh
-          </span>
+          {isVideoLoaded && (
+            <button onClick={capturePhoto}>
+              <img
+                src={ScreenShotButton}
+                className="mx-auto"
+                alt="Chụp ảnh"
+                width={75}
+              />
+            </button>
+          )}
 
           <canvas ref={canvasRef} style={{ display: 'none' }} />
         </>
@@ -111,5 +116,3 @@ const CameraCapture = () => {
     </div>
   )
 }
-
-export default CameraCapture

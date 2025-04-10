@@ -2,6 +2,8 @@ import { useSurvey } from '../context/SurveyContext'
 import { CameraIcon, MoveRight } from 'lucide-react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
+import BackButton from '../assets/images/back-button.png'
+import NextButton from '../assets/images/next-button.png'
 
 export default function UploadImage() {
   const [loading, setLoading] = useState(false)
@@ -34,31 +36,18 @@ export default function UploadImage() {
           className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-md border-2 border-[#e85454]"
         />
       </div>
-      <div className="flex justify-between items-center mx-auto w-[240px]">
+      <div className="flex justify-between items-center mx-auto w-[85%]">
         <button
           onClick={() => {
             clearCapturedImage()
           }}
         >
-          <CameraIcon
-            className="block mx-auto"
-            height={50}
-            width={50}
-            stroke="#e85454"
-          />
-          <span
-            className="uppercase bg-white py-1 px-3 leading-0 text-[0.5rem] text-[#e85454]"
-            style={{ fontFamily: 'Uniqlo Bold' }}
-          >
-            Quay lại
-          </span>
+          <img src={BackButton} className="mx-auto" alt="Tiếp tục" width={75} />
         </button>
 
         <button
           disabled={loading}
-          className={`uppercase text-white ${
-            loading ? 'opacity-50 cursor-not-allowed' : ''
-          }`}
+          className={`${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
           onClick={() => {
             handleUploadImage()
           }}
@@ -66,20 +55,13 @@ export default function UploadImage() {
           {loading ? (
             <div className="h-[50px] w-[50px] mx-auto border-4 border-white border-t-[#e85454] rounded-full animate-spin" />
           ) : (
-            <MoveRight
-              className="block mx-auto"
-              height={50}
-              width={50}
-              stroke="#e85454"
+            <img
+              src={NextButton}
+              className="mx-auto"
+              alt="Tiếp tục"
+              width={75}
             />
           )}
-
-          <span
-            className="uppercase text-white py-1 px-3 leading-0 text-[0.5rem] bg-[#e85454]"
-            style={{ fontFamily: 'Uniqlo Bold' }}
-          >
-            Tiếp tục
-          </span>
         </button>
       </div>
     </>

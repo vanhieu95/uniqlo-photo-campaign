@@ -4,30 +4,6 @@ body {
   background-color:#fef0ed;
 }
 
-.camera-wrapper video {
-  overflow: hidden;
-}
-
-/* CSS */
-.record-button {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: transparent;
-  border: 2px solid #e85454; /* Soft red border */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.inner-circle {
-  width: 40px;
-  height: 40px;
-  background-color: #e85454; /* Red button */
-  border-radius: 50%;
-}
-
 .framed-textarea-wrapper {
   position: relative;
   width: 85%;
@@ -55,10 +31,10 @@ body {
   left: 0;
   width: calc(100% - 30px);
   height: calc(100% - 20px);
-  border-top: 4px solid #e85454;
-  border-left: 4px solid #e85454;
+  border-top: 5px solid #e85454;
+  border-left: 5px solid #e85454;
   z-index: 1;
-  transform: translate(-4px, -4px);
+  transform: translate(-5px, -5px);
 }
 
 /* Bottom-right border */
@@ -69,8 +45,66 @@ body {
   right: 0;
   width: calc(100% - 30px);
   height: calc(100% - 20px);
-  border-bottom: 4px solid #e85454;
-  border-right: 4px solid #e85454;
+  border-bottom: 5px solid #e85454;
+  border-right: 5px solid #e85454;
   z-index: 1;
-  transform: translate(4px, 0px);
+  transform: translate(5px, 1px);
+}
+
+.framed-popup-wrapper {
+  position: relative;
+  width: 85%;
+  background-color: #fef6f4;
+}
+
+.framed-popup {
+  width: 100%;
+  min-height: 200px;
+  padding: 16px;
+  background: white;
+  border: 1px solid #e85454;
+  position: relative;
+  z-index: 2;
+  resize: none;
+  font-size: 1rem;
+  outline: none;
+}
+
+/* Top-left border */
+.framed-popup-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 65%;
+  height: 65%;
+  border-top: 9px solid #e85454;
+  border-left: 9px solid #e85454;
+  border-radius: 1rem;
+  z-index: 1;
+  transform: translate(-6px, -6px);
+}
+
+/* Bottom-right border */
+.framed-popup-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 65%;
+  height: 65%;
+  border-bottom: 9px solid #e85454;
+  border-right: 9px solid #e85454;
+  border-radius: 1rem;
+  z-index: 1;
+  transform: translate(6px, 6px);
+}
+
+.horizontal-line {
+  display: block;
+  height: 0;
+  border: 0;
+  border-top: 25px solid #e85454;
+  margin-top: auto;
+  padding: 0;
 }

@@ -1,4 +1,5 @@
 import uniqloLogo from '../assets/uniqlo.svg'
+import BratopLogo from '../assets/images/bratop-logo.png'
 import { useForm } from 'react-hook-form'
 import { useSurvey } from '../context/SurveyContext'
 import { useNavigate } from 'react-router'
@@ -43,20 +44,16 @@ export default function Content() {
         />
       </h1>
 
-      <h2
-        className="text-3xl mt-2 leading-none"
-        style={{ fontFamily: 'Uniqlo Light' }}
-      >
-        BRATOP
-      </h2>
-      <h2
-        className="text-sm leading-none mb-2"
-        style={{ fontFamily: 'Uniqlo Regular' }}
-      >
-        Tích Hợp Nâng Đỡ
-      </h2>
+      <img
+        src={BratopLogo}
+        className="mx-auto mt-3 mb-7"
+        alt="Bra Top tích hợp nâng đỡ"
+        width={100}
+      />
 
-      <p style={{ fontFamily: 'Uniqlo Light' }}>Cảm nhận của bạn thế nào về</p>
+      <p className="text-lg" style={{ fontFamily: 'Uniqlo Light' }}>
+        Cảm nhận của bạn thế nào về
+      </p>
 
       <h3
         className="text-2xl text-[#e85454]"
@@ -70,12 +67,13 @@ export default function Content() {
       </p>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="framed-textarea-wrapper mx-auto mt-8">
+        <div className="framed-textarea-wrapper mx-auto mt-7">
           <textarea
             {...register('content', {
               maxLength: TEXT_AREA_MAX_LENGTH,
             })}
             className="bg-white w-[90%] h-48 text-3xl mx-auto text-black resize-none framed-textarea"
+            style={{ fontFamily: 'Uniqlo Regular' }}
           ></textarea>
           {errors.content && (
             <span className="text-red-600">
@@ -86,7 +84,7 @@ export default function Content() {
 
         <button
           disabled={loading}
-          className={`bg-[#e85454] text-white text-2xl uppercase py-2 px-4 mt-8 ${
+          className={`bg-[#e85454] text-white text-2xl uppercase py-2 px-4 mt-8 shadow-2xl ${
             loading ? 'opacity-50 cursor-not-allowed' : ''
           }`}
           type="submit"
