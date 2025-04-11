@@ -36,8 +36,6 @@ export function SurveyProvider({ children }) {
         setImageUrl(url)
       }
 
-      console.log(url)
-
       return true
     } catch {
       clearCapturedImage()
@@ -45,7 +43,7 @@ export function SurveyProvider({ children }) {
     }
   }
 
-  async function completeSurvey(content) {
+  async function completeSurvey(info) {
     if (!capturedImage || !imageUrl) {
       return false
     }
@@ -53,7 +51,7 @@ export function SurveyProvider({ children }) {
     try {
       await setDatabase('images', {
         url: imageUrl,
-        content,
+        ...info,
       })
 
       return true

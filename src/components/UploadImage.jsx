@@ -27,16 +27,16 @@ export default function UploadImage() {
   return (
     <>
       <div
-        className="relative w-full max-w-[85%]"
+        className="relative w-[85%] max-w-sm"
         style={{ aspectRatio: '3 / 4' }}
       >
         <img
           src={capturedImage}
           alt="Captured"
-          className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-md border-2 border-[#e85454]"
+          className="absolute inset-0 w-full h-full object-contain rounded-lg shadow-md border-2 border-[#e85454]"
         />
       </div>
-      <div className="flex justify-between items-center mx-auto w-[85%]">
+      <div className="flex justify-between items-center mx-auto w-[85%] max-w-sm">
         <button
           disabled={loading}
           className={`${loading ? 'opacity-50 cursor-not-allowed' : ''}`}

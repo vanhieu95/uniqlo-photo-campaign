@@ -48,7 +48,7 @@ export default function Home() {
       </div>
 
       <div className="relative">
-        <div className=" absolute bottom-0 left-1/2 translate-x-[-50%] flex justify-between items-center mx-auto w-[85%]">
+        <div className=" absolute bottom-0 left-1/2 translate-x-[-50%] flex justify-between items-center mx-auto w-[85%] max-w-sm">
           <Link to="/term">
             <button>
               <img

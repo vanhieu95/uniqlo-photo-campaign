@@ -10,17 +10,19 @@ export default function Content() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm({ mode: 'onChange' })
   const [loading, setLoading] = useState(false)
   const { clearCapturedImage, completeSurvey } = useSurvey()
   const navigate = useNavigate()
-  const TEXT_AREA_MAX_LENGTH = 40
+  const CONTENT_MAX_LENGTH = 40
+  const NAME_REGEX = /^[\p{L} ,.'-]+$/u
+  const CONTENT_REGEX = /^[a-zA-Z]+\.[a-zA-Z]{4,10}^/
 
   async function onSubmit(data) {
-    let { content } = data
+    let { name, content } = data
     content = encodeURIComponent(content)
     setLoading(true)
-    const result = await completeSurvey(content)
+    const result = await completeSurvey({ name, content })
     setLoading(false)
 
     if (result) {
@@ -46,41 +48,84 @@ export default function Content() {
 
       <img
         src={BratopLogo}
-        className="mx-auto mt-3 mb-7"
+        className="mx-auto mt-3 mb-5"
         alt="Bra Top tích hợp nâng đỡ"
         width={100}
       />
 
-      <p className="text-lg" style={{ fontFamily: 'Uniqlo Light' }}>
-        Cảm nhận của bạn thế nào về
-      </p>
-
-      <h3
-        className="text-2xl text-[#e85454]"
-        style={{ fontFamily: 'Uniqlo Bold' }}
-      >
-        UNIQLO BRATOP
-      </h3>
-
-      <p className="text-sm" style={{ fontFamily: 'Uniqlo Light' }}>
-        Hãy cùng nhau chia sẽ nhé ❤️
-      </p>
-
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="framed-textarea-wrapper mx-auto mt-7">
-          <textarea
-            {...register('content', {
-              maxLength: TEXT_AREA_MAX_LENGTH,
+        <div className="mb-5">
+          <p className="text-lg" style={{ fontFamily: 'Uniqlo Light' }}>
+            Tên của bạn là
+          </p>
+
+          <input
+            {...register('name', {
+              required: 'Tên không được bỏ trống',
+              minLength: {
+                value: 2,
+                message: 'Tên không đủ độ dài',
+              },
+              pattern: {
+                value: NAME_REGEX,
+                message: 'Tên không hợp lệ',
+              },
             })}
-            className="bg-white w-[90%] h-48 text-3xl mx-auto text-black resize-none framed-textarea"
+            type="text"
+            className=" bg-white rounded-md w-[70%] max-w-sm h-9 p-3 border border-[#e85454] shadow-[2px_2px_0px_0px_rgba(232,84,84,1)] focus:outline-none"
             style={{ fontFamily: 'Uniqlo Regular' }}
-          ></textarea>
-          {errors.content && (
-            <span className="text-red-600">
-              Nội dung không được vượt quá {TEXT_AREA_MAX_LENGTH} ký tự
-            </span>
+          />
+          {errors.name && (
+            <p
+              role="alert"
+              className="text-red-600 mt-1"
+              style={{ fontFamily: 'Uniqlo Light' }}
+            >
+              {errors.name.message}
+            </p>
           )}
         </div>
+
+        <p className="text-lg" style={{ fontFamily: 'Uniqlo Light' }}>
+          Cảm nhận của bạn thế nào về
+        </p>
+
+        <h3
+          className="text-2xl text-[#e85454]"
+          style={{ fontFamily: 'Uniqlo Bold' }}
+        >
+          UNIQLO BRATOP
+        </h3>
+
+        <p className="text-xs" style={{ fontFamily: 'Uniqlo Light' }}>
+          Hãy cùng nhau chia sẽ nhé ❤️
+        </p>
+
+        <div className="framed-textarea-wrapper mx-auto mt-7 w-[90%] max-w-sm">
+          <textarea
+            {...register('content', {
+              maxLength: {
+                value: CONTENT_MAX_LENGTH,
+                message: `Nội dung không được vượt quá ${CONTENT_MAX_LENGTH} ký tự`,
+              },
+              pattern: {
+                value: CONTENT_REGEX,
+                message: 'Nội dung không được chứa ký tự đặc biệt',
+              },
+            })}
+            className="bg-white h-48 text-3xl mx-auto text-black resize-none framed-textarea focus:outline-none"
+            style={{ fontFamily: 'Uniqlo Regular' }}
+          ></textarea>
+        </div>
+        {errors.content && (
+          <p
+            role="alert"
+            className="text-red-600 mt-1"
+            style={{ fontFamily: 'Uniqlo Light' }}
+          >
+            {errors.content.message}
+          </p>
+        )}
 
         <button
           disabled={loading}

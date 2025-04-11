@@ -61,7 +61,9 @@ export default function CameraCapture() {
       canvas.width = cropWidth
       canvas.height = cropHeight
 
-      // Draw cropped video frame to canvas
+      context.save()
+      context.scale(-1, 1)
+      context.translate(-canvas.width, 0)
       context.drawImage(
         video,
         cropX,
@@ -73,6 +75,7 @@ export default function CameraCapture() {
         canvas.width,
         canvas.height,
       )
+      context.restore()
 
       // You can then convert canvas to image or do whatever you need
       const imageDataUrl = canvas.toDataURL('image/jpeg', 0.75)
@@ -83,7 +86,7 @@ export default function CameraCapture() {
   return (
     <>
       <div
-        className="relative w-full max-w-[85%]"
+        className="relative w-[85%] max-w-sm"
         style={{ aspectRatio: '3 / 4' }}
       >
         <video
@@ -91,10 +94,11 @@ export default function CameraCapture() {
           autoPlay
           playsInline
           className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-md border-2 border-[#e85454]"
+          style={{ transform: 'scaleX(-1)' }}
         />
       </div>
 
-      <div className="flex w-[85%] items-end-safe">
+      <div className="flex w-[85%] max-w-sm items-end-safe">
         <button
           className="ml-auto translate-x-[35%]"
           disabled={!isVideoLoaded}

@@ -8,7 +8,7 @@ export default function Term() {
   return (
     <div className="h-full flex flex-col justify-between">
       <div>
-        <div className="relative bg-white mt-20 rounded-lg w-[90%] mx-auto text-[16px] framed-popup-wrapper">
+        <div className="relative bg-white mt-20 rounded-lg w-[90%] max-w-sm mx-auto text-[16px] framed-popup-wrapper">
           {/* Content */}
           <div className="relative z-10 framed-popup rounded-2xl text-left">
             <h2

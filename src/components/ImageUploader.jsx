@@ -20,8 +20,8 @@ export default function ImageUploader() {
 
     reader.onload = (event) => {
       img.onload = () => {
-        const cropped = cropToAspect(img, 3 / 4)
-        captureTheImage(cropped)
+        // const cropped = cropToAspect(img, 3 / 4)
+        captureTheImage(img.src)
       }
       img.src = event.target.result
     }
@@ -29,47 +29,47 @@ export default function ImageUploader() {
     reader.readAsDataURL(file)
   }
 
-  const cropToAspect = (img, aspectRatio) => {
-    const canvas = document.createElement('canvas')
+  // const cropToAspect = (img, aspectRatio) => {
+  //   const canvas = document.createElement('canvas')
 
-    const inputWidth = img.width
-    const inputHeight = img.height
-    const inputAspectRatio = inputWidth / inputHeight
+  //   const inputWidth = img.width
+  //   const inputHeight = img.height
+  //   const inputAspectRatio = inputWidth / inputHeight
 
-    let outputWidth, outputHeight
+  //   let outputWidth, outputHeight
 
-    if (inputAspectRatio > aspectRatio) {
-      // Crop width
-      outputHeight = inputHeight
-      outputWidth = inputHeight * aspectRatio
-    } else {
-      // Crop height
-      outputWidth = inputWidth
-      outputHeight = inputWidth / aspectRatio
-    }
+  //   if (inputAspectRatio > aspectRatio) {
+  //     // Crop width
+  //     outputHeight = inputHeight
+  //     outputWidth = inputHeight * aspectRatio
+  //   } else {
+  //     // Crop height
+  //     outputWidth = inputWidth
+  //     outputHeight = inputWidth / aspectRatio
+  //   }
 
-    const offsetX = (inputWidth - outputWidth) / 2
-    const offsetY = (inputHeight - outputHeight) / 2
+  //   const offsetX = (inputWidth - outputWidth) / 2
+  //   const offsetY = (inputHeight - outputHeight) / 2
 
-    canvas.width = outputWidth
-    canvas.height = outputHeight
+  //   canvas.width = outputWidth
+  //   canvas.height = outputHeight
 
-    const ctx = canvas.getContext('2d')
-    ctx.drawImage(
-      img,
-      offsetX,
-      offsetY,
-      outputWidth,
-      outputHeight,
-      0,
-      0,
-      outputWidth,
-      outputHeight,
-    )
+  //   const ctx = canvas.getContext('2d')
+  //   ctx.drawImage(
+  //     img,
+  //     offsetX,
+  //     offsetY,
+  //     outputWidth,
+  //     outputHeight,
+  //     0,
+  //     0,
+  //     outputWidth,
+  //     outputHeight,
+  //   )
 
-    // Convert to JPG
-    return canvas.toDataURL('image/jpeg', 0.7)
-  }
+  //   // Convert to JPG
+  //   return canvas.toDataURL('image/jpeg', 0.7)
+  // }
 
   return (
     <div className="ml-auto">

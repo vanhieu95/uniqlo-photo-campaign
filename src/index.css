@@ -15,7 +15,7 @@ body {
   min-height: 200px;
   padding: 16px;
   background: white;
-  border: none;
+  border: 1px solid #e85454;
   position: relative;
   z-index: 2;
   resize: none;

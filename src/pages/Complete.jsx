@@ -16,14 +16,18 @@ export default function Complete() {
             height={125}
           />
         </h1>
-
         <p
-          className="uppercase text-2xl text-[#e85454] w-[85%] mx-auto mt-18"
+          className="uppercase text-2xl text-[#e85454] mx-auto mt-18"
           style={{ fontFamily: 'Uniqlo Bold' }}
         >
-          Chúc bạn có một trải nghiệm thật thú vị cùng
+          Chúc bạn có một trải
         </p>
-
+        <p
+          className="uppercase text-2xl text-[#e85454] mx-auto"
+          style={{ fontFamily: 'Uniqlo Bold' }}
+        >
+          nghiệm thật thú vị cùng
+        </p>
         <img
           src={BratopLogo}
           className="mx-auto mt-5 mb-2"
