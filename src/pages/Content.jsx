@@ -16,7 +16,6 @@ export default function Content() {
   const navigate = useNavigate()
   const CONTENT_MAX_LENGTH = 40
   const NAME_REGEX = /^[\p{L} ,.'-]+$/u
-  const CONTENT_REGEX = /^[a-zA-Z]+\.[a-zA-Z]{4,10}^/
 
   async function onSubmit(data) {
     let { name, content } = data
@@ -107,10 +106,6 @@ export default function Content() {
               maxLength: {
                 value: CONTENT_MAX_LENGTH,
                 message: `Nội dung không được vượt quá ${CONTENT_MAX_LENGTH} ký tự`,
-              },
-              pattern: {
-                value: CONTENT_REGEX,
-                message: 'Nội dung không được chứa ký tự đặc biệt',
               },
             })}
             className="bg-white h-48 text-3xl mx-auto text-black resize-none framed-textarea focus:outline-none"
