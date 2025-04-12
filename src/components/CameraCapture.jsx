@@ -2,12 +2,16 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useSurvey } from '../context/SurveyContext'
 import ScreenShotButton from '../assets/images/screen-shot-button.png'
 import ImageUploader from './ImageUploader'
+import useCameraPermissionWatcher from '../hooks/useCameraPermissionWatcher'
 
 export default function CameraCapture() {
+  const cameraPermission = useCameraPermissionWatcher()
+  const { capturedImage, captureTheImage } = useSurvey()
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false)
+  const [isCameraOff, setIsCameraOff] = useState(false)
   const videoRef = useRef(null)
   const canvasRef = useRef(null)
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false)
-  const { capturedImage, captureTheImage } = useSurvey()
+  const streamRef = useRef(null)
 
   useEffect(() => {
     if (capturedImage != null) {
@@ -20,6 +24,8 @@ export default function CameraCapture() {
           video: { facingMode: 'user' },
           audio: false,
         })
+        streamRef.current = stream
+
         if (videoRef.current) {
           videoRef.current.srcObject = stream
         }
@@ -30,8 +36,31 @@ export default function CameraCapture() {
       }
     }
 
-    getCamera()
-  }, [capturedImage])
+    if (cameraPermission === 'granted') {
+      getCamera()
+    }
+  }, [capturedImage, cameraPermission])
+
+  function turnOffCamera() {
+    const video = videoRef.current
+
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach((track) => {
+        track.stop()
+      })
+      streamRef.current = null
+    }
+
+    if (video) {
+      video.srcObject = null
+      video.removeAttribute('src')
+      video.pause()
+      // video.load()
+    }
+
+    setIsCameraOff(true)
+    setIsVideoLoaded(false)
+  }
 
   const capturePhoto = () => {
     const video = videoRef.current
@@ -42,10 +71,7 @@ export default function CameraCapture() {
       const videoWidth = video.videoWidth
       const videoHeight = video.videoHeight
 
-      // Desired aspect ratio
       const aspectRatio = 3 / 4
-
-      // Calculate dimensions for center crop
       let cropWidth = videoWidth
       let cropHeight = cropWidth / aspectRatio
 
@@ -57,7 +83,6 @@ export default function CameraCapture() {
       const cropX = (videoWidth - cropWidth) / 2
       const cropY = (videoHeight - cropHeight) / 2
 
-      // Set canvas size to the cropped size
       canvas.width = cropWidth
       canvas.height = cropHeight
 
@@ -77,10 +102,13 @@ export default function CameraCapture() {
       )
       context.restore()
 
-      // You can then convert canvas to image or do whatever you need
       const imageDataUrl = canvas.toDataURL('image/jpeg', 0.75)
       captureTheImage(imageDataUrl)
     }
+  }
+
+  function isButtonDisabled() {
+    return !isVideoLoaded || isCameraOff || cameraPermission === 'denied'
   }
 
   return (
@@ -100,14 +128,21 @@ export default function CameraCapture() {
 
       <div className="flex w-[85%] max-w-sm items-end-safe">
         <button
-          className="ml-auto translate-x-[35%]"
-          disabled={!isVideoLoaded}
-          onClick={capturePhoto}
+          className={`ml-auto translate-x-[35%] ${
+            isButtonDisabled() ? 'opacity-50 cursor-not-allowed' : ''
+          }`}
+          disabled={isButtonDisabled()}
+          onClick={() => {
+            capturePhoto()
+            turnOffCamera()
+          }}
         >
           <img
             src={ScreenShotButton}
             className={`${
-              !isVideoLoaded ? 'opacity-50 cursor-not-allowed' : ''
+              !isVideoLoaded || isCameraOff
+                ? 'opacity-50 cursor-not-allowed'
+                : ''
             }`}
             alt="Chụp ảnh"
             width={100}
