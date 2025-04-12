@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useSurvey } from '../context/SurveyContext'
 import ScreenShotButton from '../assets/images/screen-shot-button.png'
 import ImageUploader from './ImageUploader'
-import useCameraPermissionWatcher from '../hooks/useCameraPermissionWatcher'
+// import useCameraPermissionWatcher from '../hooks/useCameraPermissionWatcher'
 
 export default function CameraCapture() {
-  const cameraPermission = useCameraPermissionWatcher()
+  // const cameraPermission = useCameraPermissionWatcher()
   const { capturedImage, captureTheImage } = useSurvey()
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   const [isCameraOff, setIsCameraOff] = useState(false)
@@ -36,10 +36,11 @@ export default function CameraCapture() {
       }
     }
 
-    if (cameraPermission === 'granted') {
-      getCamera()
-    }
-  }, [capturedImage, cameraPermission])
+    // if (cameraPermission === 'granted') {
+    //   getCamera()
+    // }
+    getCamera()
+  }, [capturedImage])
 
   function turnOffCamera() {
     const video = videoRef.current
@@ -108,7 +109,7 @@ export default function CameraCapture() {
   }
 
   function isButtonDisabled() {
-    return !isVideoLoaded || isCameraOff || cameraPermission === 'denied'
+    return !isVideoLoaded || isCameraOff
   }
 
   return (
