@@ -6,6 +6,7 @@ import BratopLogo from '../assets/images/bratop-logo.png'
 import CameraButton from '../assets/images/camera-button.png'
 import GuideButton from '../assets/images/guide-button.png'
 import TermButton from '../assets/images/term-button.png'
+import playSound from '../hooks/useSound'
 
 export default function Home() {
   const { clearCapturedImage } = useSurvey()
@@ -18,8 +19,8 @@ export default function Home() {
     <div className="h-full flex flex-col justify-between">
       <div>
         <h1
-          className="text-2xl mb-4 pt-14 text-[#e85454] uppercase"
-          style={{ fontFamily: 'Uniqlo Bold' }}
+          className="text-2xl mb-4 pt-14 text-[#e85454] uppercase fade-item fade-delay-1"
+          style={{ fontFamily: 'Uniqlo Bold', opacity: 0 }}
         >
           Chào mừng bạn đến với
           <img
@@ -30,25 +31,29 @@ export default function Home() {
             height={100}
           />
         </h1>
-        <img
-          src={BratopLogo}
-          className="mx-auto mt-5 mb-2"
-          alt="Bra Top tích hợp nâng đỡ"
-          width={300}
-        />
+
+        <div className="fade-item fade-delay-2">
+          <img
+            src={BratopLogo}
+            className="mx-auto mt-5 mb-2 bratop-logo-sparkle"
+            alt="Bra Top tích hợp nâng đỡ"
+            width={300}
+          />
+        </div>
 
         <Link to="/photo">
           <img
             src={CameraButton}
-            className="mx-auto mt-10 mb-2"
+            className="mx-auto mt-10 mb-2 page-fade-in-bottom fade-item fade-delay-3"
             alt="Nhấn để bắt đầu chụp ảnh"
             width={250}
+            onClick={playSound}
           />
         </Link>
       </div>
 
-      <div className="relative">
-        <div className=" absolute bottom-0 left-1/2 translate-x-[-50%] flex justify-between items-center mx-auto w-[85%] max-w-sm">
+      <div className="relative page-fade-in-bottom fade-item fade-delay-4">
+        <div className="absolute bottom-0 left-1/2 translate-x-[-50%] flex justify-between items-center mx-auto w-[85%] max-w-sm">
           <Link to="/term">
             <button>
               <img
@@ -56,6 +61,7 @@ export default function Home() {
                 className="mx-auto"
                 alt="Điều khoản"
                 width={100}
+                onClick={playSound}
               />
             </button>
           </Link>
@@ -67,6 +73,7 @@ export default function Home() {
                 className="mx-auto"
                 alt="Cách sử dụng"
                 width={100}
+                onClick={playSound}
               />
             </button>
           </Link>

@@ -8,8 +8,8 @@ export default function Photo() {
   const { capturedImage } = useSurvey()
 
   return (
-    <>
-      <div className="mb-2">
+    <div>
+      <div className="mb-2 fade-item fade-delay-1">
         <h1>
           <img
             src={uniqloLogo}
@@ -22,14 +22,14 @@ export default function Photo() {
 
         <img
           src={BratopLogo}
-          className="mx-auto mt-5 mb-2"
+          className="mx-auto mt-5 mb-2 bratop-logo-sparkle"
           alt="Bra Top tích hợp nâng đỡ"
           width={100}
         />
       </div>
       {/* <CameraCapture /> */}
       {/* Video container with fixed aspect ratio */}
-      <div className="flex flex-col items-center space-y-4">
+      <div className="flex flex-col items-center space-y-4 fade-item fade-delay-2">
         {!capturedImage && (
           <>
             <CameraCapture />
@@ -38,6 +38,6 @@ export default function Photo() {
         {/* Captured image preview */}
         {capturedImage && <UploadImage />}
       </div>
-    </>
+    </div>
   )
 }

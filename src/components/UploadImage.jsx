@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router'
 import BackButton from '../assets/images/back-button.png'
 import NextButton from '../assets/images/next-button.png'
+import playSound from '../hooks/useSound'
 
 export default function UploadImage() {
   const [loading, setLoading] = useState(false)
@@ -41,6 +42,7 @@ export default function UploadImage() {
           disabled={loading}
           className={`${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
           onClick={() => {
+            playSound()
             clearCapturedImage()
           }}
         >
@@ -56,6 +58,7 @@ export default function UploadImage() {
           disabled={loading}
           className={`${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
           onClick={() => {
+            playSound()
             handleUploadImage()
           }}
         >

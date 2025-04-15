@@ -3,12 +3,13 @@ import { Link } from 'react-router'
 import TiviIcon from '../assets/images/tivi-icon.png'
 import PhotoIcon from '../assets/images/photo-icon.png'
 import LockIcon from '../assets/images/lock-icon.png'
+import playSound from '../hooks/useSound'
 
 export default function Term() {
   return (
     <div className="h-full flex flex-col justify-between">
       <div>
-        <div className="relative bg-white mt-20 rounded-lg w-[90%] max-w-sm mx-auto text-[16px] framed-popup-wrapper">
+        <div className="relative bg-white mt-20 rounded-lg w-[90%] max-w-sm mx-auto text-[16px] framed-popup-wrapper fade-item fade-delay-1">
           {/* Content */}
           <div className="relative z-10 framed-popup rounded-2xl text-left">
             <h2
@@ -49,9 +50,10 @@ export default function Term() {
 
         <Link to="/">
           <button
-            className="bg-[#e85454] text-white text-lg uppercase py-1 px-10 mt-12 shadow-2xl"
+            className="bg-[#e85454] text-white text-lg uppercase py-1 px-10 mt-12 shadow-2xl fade-item fade-delay-2"
             type="submit"
             style={{ fontFamily: 'Uniqlo Bold' }}
+            onClick={playSound}
           >
             Đóng
           </button>

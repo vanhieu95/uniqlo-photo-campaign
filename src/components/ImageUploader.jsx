@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import { useSurvey } from '../context/SurveyContext'
 import LibraryButton from '../assets/images/library-button.png'
+import playSound from '../hooks/useSound'
 
 export default function ImageUploader() {
   const { captureTheImage } = useSurvey()
@@ -80,7 +81,12 @@ export default function ImageUploader() {
         onChange={handleFileChange}
         className="hidden"
       />
-      <button onClick={() => inputRef.current.click()}>
+      <button
+        onClick={() => {
+          playSound()
+          inputRef.current.click()
+        }}
+      >
         <img
           src={LibraryButton}
           className="mx-auto"

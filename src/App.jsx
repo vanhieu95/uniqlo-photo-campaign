@@ -6,6 +6,7 @@ import Content from './pages/Content'
 import Complete from './pages/Complete'
 import Guide from './pages/Guide'
 import Term from './pages/Term'
+import './assets/sounds/button-sound.mp3'
 
 function App() {
   return (

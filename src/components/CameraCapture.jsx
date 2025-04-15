@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useSurvey } from '../context/SurveyContext'
 import ScreenShotButton from '../assets/images/screen-shot-button.png'
 import ImageUploader from './ImageUploader'
+import playSound from '../hooks/useSound'
 // import useCameraPermissionWatcher from '../hooks/useCameraPermissionWatcher'
 
 export default function CameraCapture() {
@@ -134,6 +135,7 @@ export default function CameraCapture() {
           }`}
           disabled={isButtonDisabled()}
           onClick={() => {
+            playSound()
             capturePhoto()
             turnOffCamera()
           }}

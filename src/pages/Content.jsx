@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { useSurvey } from '../context/SurveyContext'
 import { useNavigate } from 'react-router'
 import { useState } from 'react'
+import playSound from '../hooks/useSound'
 
 export default function Content() {
   const {
@@ -35,25 +36,27 @@ export default function Content() {
 
   return (
     <div>
-      <h1>
-        <img
-          src={uniqloLogo}
-          className="block mx-auto pt-3"
-          alt="Uniqlo"
-          width={75}
-          height={75}
-        />
-      </h1>
+      <div className="fade-item fade-delay-1">
+        <h1>
+          <img
+            src={uniqloLogo}
+            className="block mx-auto pt-3"
+            alt="Uniqlo"
+            width={75}
+            height={75}
+          />
+        </h1>
 
-      <img
-        src={BratopLogo}
-        className="mx-auto mt-3 mb-5"
-        alt="Bra Top tích hợp nâng đỡ"
-        width={100}
-      />
+        <img
+          src={BratopLogo}
+          className="mx-auto mt-3 mb-5 bratop-logo-sparkle"
+          alt="Bra Top tích hợp nâng đỡ"
+          width={100}
+        />
+      </div>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="mb-5">
+        <div className="mb-5 fade-item fade-delay-2">
           <p className="text-lg" style={{ fontFamily: 'Uniqlo Light' }}>
             Tên của bạn là
           </p>
@@ -85,22 +88,24 @@ export default function Content() {
           )}
         </div>
 
-        <p className="text-lg" style={{ fontFamily: 'Uniqlo Light' }}>
-          Cảm nhận của bạn thế nào về
-        </p>
+        <div className="fade-item fade-delay-3">
+          <p className="text-lg" style={{ fontFamily: 'Uniqlo Light' }}>
+            Cảm nhận của bạn thế nào về
+          </p>
 
-        <h3
-          className="text-2xl text-[#e85454]"
-          style={{ fontFamily: 'Uniqlo Bold' }}
-        >
-          UNIQLO BRATOP
-        </h3>
+          <h3
+            className="text-2xl text-[#e85454]"
+            style={{ fontFamily: 'Uniqlo Bold' }}
+          >
+            UNIQLO BRATOP
+          </h3>
 
-        <p className="text-xs" style={{ fontFamily: 'Uniqlo Light' }}>
-          Hãy cùng nhau chia sẽ nhé ❤️
-        </p>
+          <p className="text-xs" style={{ fontFamily: 'Uniqlo Light' }}>
+            Hãy cùng nhau chia sẽ nhé ❤️
+          </p>
+        </div>
 
-        <div className="framed-textarea-wrapper mx-auto mt-7 w-[90%] max-w-sm">
+        <div className="framed-textarea-wrapper mx-auto mt-7 w-[90%] max-w-sm fade-item fade-delay-4">
           <textarea
             {...register('content', {
               maxLength: {
@@ -124,11 +129,12 @@ export default function Content() {
 
         <button
           disabled={loading}
-          className={`bg-[#e85454] text-white text-2xl uppercase py-2 px-4 mt-8 shadow-2xl ${
+          className={`bg-[#e85454] text-white text-2xl uppercase py-2 px-4 mt-8 shadow-2xl fade-item fade-delay-5 ${
             loading ? 'opacity-50 cursor-not-allowed' : ''
           }`}
           type="submit"
           style={{ fontFamily: 'Uniqlo Bold' }}
+          onClick={playSound}
         >
           Hoàn tất
         </button>
